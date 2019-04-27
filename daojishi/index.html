@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+</head>
+<body>
+    倒计时：<span id="time">60</span>
+</body>
+<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var setTime;
+        $(document).ready(function(){
+            var time=parseInt($("#time").text());
+            setTime=setInterval(function(){
+                if(time<=0){
+                	//停止时间
+                    clearInterval(setTime);
+                    return;
+                }
+                time--;
+                $("#time").text(time);
+            },1000);
+        });
+    </script>
+</html>

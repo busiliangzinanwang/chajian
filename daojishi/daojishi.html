@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jquery倒计时</title>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".item input:last").click(function () {
+					var time_ = $(".item input").val();
+					var intDiff = parseInt(time_); //倒计时总秒数量
+					setInterval(function() {
+						var day = 0,hour = 0,minute = 0,second = 0; //时间默认值		
+						if(intDiff > 0) {
+							day = Math.floor(intDiff / (60 * 60 * 24));
+							hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+							minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+							second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+						}
+						if(minute <= 9) minute = '0' + minute;
+						if(second <= 9) second = '0' + second;
+						$('#day_show').html(day + "天");
+						$('#hour_show').html('<s id="h"></s>' + hour + '时');
+						$('#minute_show').html('<s></s>' + minute + '分');
+						$('#second_show').html('<s></s>' + second + '秒');
+						intDiff--;
+					}, 1000);
+					
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div align="center" style="width:416px; margin:0 auto">
+			<div class="item">
+				<input type="text" /><span>请输入时间</span>
+				<input type="button" value="开始" />
+			</div>
+			<div class="time-item">
+				<span id="day_show">0天</span>
+				<span id="hour_show">0时</span>
+				<span id="minute_show">0分</span>
+				<span id="second_show">0秒</span>
+			</div>
+
+		</div>
+	</body>
+
+</html>
